@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason K. Mathew - Interactive Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --primary-light: #ae55f7;
+            --primary-dark: #6d28d9;
+            --secondary: #9333ea;
+            --accent: #8b5cf6;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --surface-light: #f1f5f9;
+            --surface-dark: #e2e8f0;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --border: #e2e8f0;
+            --glow: rgba(124, 58, 237, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--background), #f1f5f9);
+        }
+
+        .bg-animated::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 25% 25%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            animation: float 30s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-15px, -15px) rotate(120deg); }
+            66% { transform: translate(15px, -10px) rotate(240deg); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(20px);
+            background: rgba(248, 250, 252, 0.95);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text);
+            background: var(--surface-light);
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        /* Mobile menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text);
+            margin: 2px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: slideInLeft 1s ease forwards 0.5s;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideInLeft 1s ease forwards 0.7s;
+            min-height: 2rem;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideInLeft 1s ease forwards 0.9s;
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            animation: slideInRight 1s ease forwards 1.1s;
+            margin-top: 2rem;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid transparent;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            padding: 4px;
+            margin-bottom: 2rem;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+        }
+
+        .typing-effect {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            border-right: 2px solid var(--accent);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-right-color: transparent; }
+            51%, 100% { border-right-color: var(--accent); }
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: slideInUp 1s ease forwards 1.3s;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 2px solid var(--primary);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--glow);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px var(--glow);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-tag:hover::before {
+            left: 100%;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 1rem;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid var(--surface);
+            box-shadow: 0 0 10px var(--glow);
+        }
+
+        .experience-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            border-color: var(--primary);
+            box-shadow: -5px 0 20px var(--glow);
+        }
+
+        .experience-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card .company {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card .date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px var(--glow);
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .project-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--surface-light);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease;
+        }
+
+        .contact-info.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--surface);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            background: var(--surface-light);
+            box-shadow: 0 8px 20px var(--glow);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Interactive Elements */
+        .interactive-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px var(--glow);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            nav a {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .interactive-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Subtle animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">JKM</div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+                    <li><a href="#about" onclick="scrollToSection('about')">About</a></li>
+                    <li><a href="#skills" onclick="scrollToSection('skills')">Skills</a></li>
+                    <li><a href="#education" onclick="scrollToSection('education')">Education</a></li>
+                    <li><a href="#experience" onclick="scrollToSection('experience')">Experience</a></li>
+                    <li><a href="#volunteering" onclick="scrollToSection('volunteering')">Volunteering</a></li>
+                    <li><a href="#projects" onclick="scrollToSection('projects')">Projects</a></li>
+                    <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Jason K. Mathew</h1>
+                <div class="subtitle">
+                    <span class="typing-effect" id="typing-text"></span>
+                </div>
+                <p>
+                    Driven analytics student passionate about transforming data into actionable insights. 
+                    I combine technical expertise with creative problem-solving to build solutions that matter.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary" onclick="scrollToSection('contact')">Let's Connect</a>
+                    <a href="#projects" class="btn btn-secondary" onclick="scrollToSection('projects')">View My Work</a>
+                </div>
+            </div>
+            <div class="profile-section">
+                <img src="pfp.jpg" alt="Jason Mathew" class="profile-img" id="profileImg">
+                <div class="interactive-stats">
+                    <div class="stat-card" onclick="animateStats()">
+                        <span class="stat-number" id="projects-count">0</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                    <div class="stat-card" onclick="animateStats()">
+                        <span class="stat-number" id="skills-count">0</span>
+                        <span class="stat-label">Technical Skills</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-content">
+            <h2 class="section-title">About Me</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary);">My Journey</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                        Currently pursuing my Bachelor's in Business Analytics & Information Systems at USF, 
+                        I'm on the Dean's List and passionate about the intersection of data, technology, and business strategy.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        From debugging computers at Best Buy to analyzing market trends at SOFWERX, 
+                        I've discovered my superpower: turning complex data into simple, actionable insights.
+                    </p>
+                </div>
+                <div class="contact-info">
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--secondary);">What Drives Me</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">â€¢</div>
+                        <div>
+                            <strong>Problem Solving</strong><br>
+                            I love tackling complex challenges with creative solutions
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">â€¢</div>
+                        <div>
+                            <strong>Data Storytelling</strong><br>
+                            Making data accessible and actionable for everyone
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">â€¢</div>
+                        <div>
+                            <strong>Innovation</strong><br>
+                            Building the future with emerging technologies
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-content">
+            <h2 class="section-title">Technical Arsenal</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming & Analytics</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Statistics</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Visualization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Pivot Tables</span>
+                        <span class="skill-tag">VLOOKUP</span>
+                        <span class="skill-tag">Charts</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">API Integration</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Platforms</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">Agile/Scrum</span>
+                        <span class="skill-tag">Slack</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="section-content">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="experience-card">
+                        <h3>Bachelor of Science - Business Analytics & Information Systems</h3>
+                        <div class="company">University of South Florida, Tampa, FL</div>
+                        <div class="date">Expected May 2026</div>
+                        <p><span style="color: var(--accent); font-weight: 600;">Dean's List</span></p>
+                        <p>Pursuing advanced coursework in data analytics, business intelligence, and information systems management.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="experience-card">
+                        <h3>Associate of Arts - Business Administration and Management</h3>
+                        <div class="company">Hillsborough Community College, Tampa, FL</div>
+                        <div class="date">2021 - 2023</div>
+                        <p>General business administration curriculum with focus on management principles and foundational business concepts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="section-content">
+            <h2 class="section-title">Professional Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="experience-card">
+                        <h3>Market Research Analyst Intern</h3>
+                        <div class="company">SOFWERX, Tampa, FL</div>
+                        <div class="date">August 2025 – Present</div>
+                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                            <li>Conducted targeted market research on emerging technologies relevant to USSOCOM, evaluating technical reports and publications to assess capabilities, limitations, and strategic fit.</li>
+                            <li>Designed and implemented data collection systems, including online forms and a centralized database, to streamline research workflows and improve data accuracy.</li>
+                            <li>Performed quantitative analysis in Excel to identify trends and prioritize high-value opportunities, supporting data-driven decision-making.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="experience-card">
+                        <h3>Consultation Agent</h3>
+                        <div class="company">Best Buy, Brandon, FL</div>
+                        <div class="date">May 2022 – Present</div>
+                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                            <li>Diagnosed and resolved computer issues by analyzing system data, performance logs, and error reports to identify patterns and implement solutions.</li>
+                            <li>Conducted in-depth consultations, gathering customer needs and system specifications to recommend technical solutions based on historical service data and product trends.</li>
+                            <li>Leveraged customer data and service trends to upsell and recommend services, contributing to revenue growth and enhancing customer experience.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="experience-card">
+                        <h3>Crew Member</h3>
+                        <div class="company">Dunkin', Tampa, FL</div>
+                        <div class="date">March 2021 – June 2021</div>
+                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                            <li>Delivered personalized guest experiences by proactively addressing customer needs and exceeding expectations.</li>
+                            <li>Adapted to various roles by cross-training in multiple positions, ensuring seamless operations during peak hours.</li>
+                            <li>Maintained high professional standards to consistently achieve and surpass performance targets.</li>
+                            <li>Fostered a positive workplace culture by demonstrating professionalism and respect in all interactions with coworkers.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="experience-card">
+                        <h3>Pharmacy Technician</h3>
+                        <div class="company">CVS, Dade City, FL</div>
+                        <div class="date">July 2021 – April 2022</div>
+                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                            <li>Maintained and updated customer prescription records in the database, ensuring accuracy and compliance with regulatory requirements.</li>
+                            <li>Resolved insurance discrepancies by analyzing patient data, identifying errors, and ensuring proper billing and claims processing.</li>
+                            <li>Analyzed prescription and customer data to identify trends, improve operational efficiency, and enhance customer service.</li>
+                            <li>Organized and managed prescription workflows, utilizing data to track inventory levels and improve efficiency in prescription fulfillment.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="volunteering">
+        <div class="section-content">
+            <h2 class="section-title">Volunteering Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="experience-card">
+                        <h3>Assistant Laboratory Technician</h3>
+                        <div class="company">AdventHealth</div>
+                        <div class="date">November 2019 – June 2021</div>
+                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                            <li>Recorded test data using appropriate software programs and databases.</li>
+                            <li>Coordinated with other departments within organization to support interdisciplinary research efforts.</li>
+                            <li>Prepared and set up necessary lab equipment for experiments.</li>
+                            <li>Organized research documentation, laboratory certificates and test results.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="experience-card">
+                        <h3>Volunteer</h3>
+                        <div class="company">Baldomero Lopez State Veterans</div>
+                        <div class="date">June 2017 – August 2017</div>
+                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                            <li>Assisted residents with daily activities such as bingo, group events, and meal services.</li>
+                            <li>Provided transportation support within the facility to ensure timely participation in activities.</li>
+                            <li>Engaged in meaningful conversations to promote companionship and emotional well-being.</li>
+                            <li>Supported staff in organizing and coordinating recreational and therapeutic programs.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-content">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>AI-Powered PC Builder Platform</h3>
+                    <div class="project-date">May 2025 – Present</div>
+                    <p>Planned a comprehensive 20-week web platform using modern tech stack for AI-driven PC build recommendations. Built complete architecture and monetization strategy with cloud services integration.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">Django REST</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Amazon Bedrock</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Tour Comparison React App</h3>
+                    <div class="project-date">May 2025</div>
+                    <p>Built an interactive React application that fetches live data from APIs to display and compare tour packages. Implemented dynamic components and state management for enhanced user experience.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">API Integration</span>
+                        <span class="tech-tag">State Management</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>COVID-19 Data Analysis</h3>
+                    <div class="project-date">December 2024</div>
+                    <p>Conducted comprehensive analysis of COVID-19 mortality data using Python. Leveraged Pandas and Matplotlib for data cleaning, statistical examination, and visualizations to uncover key trends and patterns.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Statistical Analysis</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Superstore Tableau Dashboard</h3>
+                    <div class="project-date">December 2024</div>
+                    <p>Performed comprehensive data analysis using Tableau, creating multiple visualizations including bar charts, trend lines, and filled maps. Developed an interactive dashboard with dynamic filters and calculated fields.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Tableau</span>
+                        <span class="tech-tag">Data Visualization</span>
+                        <span class="tech-tag">Interactive Dashboards</span>
+                        <span class="tech-tag">Business Intelligence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-content">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3 style="font-size: 2rem; margin-bottom: 2rem; color: var(--primary);">Get In Touch</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                        I'm always excited to discuss new opportunities, collaborate on projects, or just chat about data and technology. 
+                        Feel free to reach out through any of the channels below!
+                    </p>
+                    <a href="mailto:jasonkmathewpersonal@gmail.com" class="contact-item">
+                        <div class="contact-icon">@</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            jasonkmathewpersonal@gmail.com
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jasonkmathew/" target="_blank" class="contact-item">
+                        <div class="contact-icon">in</div>
+                        <div>
+                            <strong>LinkedIn</strong><br>
+                            /in/jasonkmathew
+                        </div>
+                    </a>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Location</strong><br>
+                            Tampa, FL
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h3 style="font-size: 2rem; margin-bottom: 2rem; color: var(--secondary);">Quick Stats</h3>
+                    <div class="interactive-stats">
+                        <div class="stat-card">
+                            <span class="stat-number">700+</span>
+                            <span class="stat-label">Volunteering Hours</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Typing effect
+        const typingText = document.getElementById('typing-text');
+        const phrases = [
+            'Data Analytics Student',
+            'Business Intelligence Enthusiast',
+            'Problem Solver',
+            'Tech Innovator',
+            'Future Data Scientist'
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let typeSpeed = 100;
+            
+            if (isDeleting) {
+                typeSpeed /= 2;
+            }
+            
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex++;
+                if (phraseIndex === phrases.length) {
+                    phraseIndex = 0;
+                }
+                typeSpeed = 500;
+            }
+            
+            setTimeout(typeWriter, typeSpeed);
+        }
+        
+        // Start typing effect after page loads
+        setTimeout(typeWriter, 1000);
+        
+        // Animate stats
+        function animateStats() {
+            const projectsCount = document.getElementById('projects-count');
+            const skillsCount = document.getElementById('skills-count');
+            
+            animateCounter(projectsCount, 5, 2000);
+            animateCounter(skillsCount, 20, 2500);
+        }
+        
+        function animateCounter(element, target, duration) {
+            const start = 0;
+            const increment = target / (duration / 50);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 50);
+        }
+        
+        // Initialize stats animation when page loads
+        setTimeout(animateStats, 2000);
+        
+        // Scroll animations
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+        
+        function isElementPartiallyInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+            
+            return (
+                rect.bottom >= 0 &&
+                rect.right >= 0 &&
+                rect.top <= windowHeight &&
+                rect.left <= windowWidth
+            );
+        }
+        
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.section-title, .skill-category, .timeline-item, .project-card, .contact-info');
+            
+            elements.forEach(element => {
+                if (isElementPartiallyInViewport(element)) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const offsetPosition = element.offsetTop - headerHeight;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.remove('mobile-open');
+        }
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('mobile-open');
+        }
+        
+        // Profile image Easter egg
+        let clickCount = 0;
+        document.getElementById('profileImg').addEventListener('click', function() {
+            clickCount++;
+            if (clickCount >= 5) {
+                this.style.transform = 'scale(1.1) rotate(360deg)';
+                this.style.filter = 'hue-rotate(180deg)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.filter = '';
+                    clickCount = 0;
+                }, 2000);
+            }
+        });
+        
+        // Event listeners
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('resize', handleScrollAnimations);
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            handleScrollAnimations();
+            
+            // Add click handlers to navigation links
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('href').substring(1);
+                    scrollToSection(sectionId);
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                const navMenu = document.getElementById('navMenu');
+                const menuToggle = document.querySelector('.mobile-menu-toggle');
+                
+                if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    navMenu.classList.remove('mobile-open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
