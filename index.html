@@ -606,6 +606,13 @@
             font-size: 1.5rem;
             color: white;
         }
+        .contact-icon .emoji {
+            display: inline-block;       /* ensures filter affects the glyph */
+            filter: grayscale(1) brightness(0) invert(1);
+            font-size: 1.35rem;
+            line-height: 1;
+            /* adjust spacing if needed */
+        }
 
         /* Interactive Elements */
         .interactive-stats {
@@ -823,21 +830,21 @@
                 <div class="contact-info">
                     <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--secondary);">What Drives Me</h3>
                     <div class="contact-item">
-                        <div class="contact-icon">â€¢</div>
+                        <div class="contact-icon"><span class="emoji">❓</span></div>
                         <div>
                             <strong>Problem Solving</strong><br>
                             I love tackling complex challenges with creative solutions
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">â€¢</div>
+                        <div class="contact-icon"><span class="emoji" style="font-weight: 500;">#</span></div>
                         <div>
                             <strong>Data Storytelling</strong><br>
                             Making data accessible and actionable for everyone
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">â€¢</div>
+                        <div class="contact-icon"><span class="emoji">🚀</span></div>
                         <div>
                             <strong>Innovation</strong><br>
                             Building the future with emerging technologies
@@ -950,19 +957,6 @@
                 </div>
                 <div class="timeline-item">
                     <div class="experience-card">
-                        <h3>Crew Member</h3>
-                        <div class="company">Dunkin', Tampa, FL</div>
-                        <div class="date">March 2021 – June 2021</div>
-                        <ul style="margin-left: 1rem; margin-top: 1rem;">
-                            <li>Delivered personalized guest experiences by proactively addressing customer needs and exceeding expectations.</li>
-                            <li>Adapted to various roles by cross-training in multiple positions, ensuring seamless operations during peak hours.</li>
-                            <li>Maintained high professional standards to consistently achieve and surpass performance targets.</li>
-                            <li>Fostered a positive workplace culture by demonstrating professionalism and respect in all interactions with coworkers.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="experience-card">
                         <h3>Pharmacy Technician</h3>
                         <div class="company">CVS, Dade City, FL</div>
                         <div class="date">July 2021 – April 2022</div>
@@ -971,6 +965,19 @@
                             <li>Resolved insurance discrepancies by analyzing patient data, identifying errors, and ensuring proper billing and claims processing.</li>
                             <li>Analyzed prescription and customer data to identify trends, improve operational efficiency, and enhance customer service.</li>
                             <li>Organized and managed prescription workflows, utilizing data to track inventory levels and improve efficiency in prescription fulfillment.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="experience-card">
+                        <h3>Crew Member</h3>
+                        <div class="company">Dunkin', Tampa, FL</div>
+                        <div class="date">March 2021 – June 2021</div>
+                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                            <li>Delivered personalized guest experiences by proactively addressing customer needs and exceeding expectations.</li>
+                            <li>Adapted to various roles by cross-training in multiple positions, ensuring seamless operations during peak hours.</li>
+                            <li>Maintained high professional standards to consistently achieve and surpass performance targets.</li>
+                            <li>Fostered a positive workplace culture by demonstrating professionalism and respect in all interactions with coworkers.</li>
                         </ul>
                     </div>
                 </div>
@@ -1087,7 +1094,14 @@
                         <div class="contact-icon">in</div>
                         <div>
                             <strong>LinkedIn</strong><br>
-                            /in/jasonkmathew
+                            jasonkmathew
+                        </div>
+                    </a>
+                    <a href="https://github.com/jasonkmathew" target="_blank" class="contact-item">
+                        <div class="contact-icon"><img src="github.png" alt="GitHub" width="24" height="24" style="filter: brightness(0) invert(1);"></div>
+                        <div>
+                            <strong>GitHub</strong><br>
+                            jasonkmathew
                         </div>
                     </a>
                     <div class="contact-item">
@@ -1111,6 +1125,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </section>
