@@ -219,6 +219,7 @@
             border: 4px solid transparent;
             background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
             padding: 4px;
+            margin-top: 1.5rem; /* moved down a bit */
             margin-bottom: 2rem;
             transition: all 0.5s ease;
             cursor: pointer;
@@ -478,9 +479,12 @@
 
         /* Projects Grid */
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 2rem;
+            justify-content: center; /* center incomplete last row */
+            align-items: stretch;
+            margin: 0 auto;
         }
 
         .project-card {
@@ -495,6 +499,20 @@
             opacity: 0;
             transform: translateY(30px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            /* allow flex children sizing when using flex layout */
+            flex: 0 1 360px; /* preferred width, will wrap if space is limited */
+            max-width: 420px;
+        }
+
+        /* visual style for the placeholder blank card */
+        .project-card.placeholder {
+            background: repeating-linear-gradient(135deg, rgba(0,0,0,0.02) 0 6px, transparent 6px 12px);
+            border: 2px dashed var(--border);
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .project-card.visible {
@@ -573,6 +591,13 @@
             transform: translateX(0);
         }
 
+        /* Center headings in the contact section so titles sit above centered stat cards */
+        #contact .contact-info h3 {
+            text-align: center;
+            width: 100%;
+            margin-left: 0;
+        }
+
         .contact-item {
             display: flex;
             align-items: center;
@@ -616,10 +641,17 @@
 
         /* Interactive Elements */
         .interactive-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* allow wrapping on small screens */
             margin: 4rem 0;
+        }
+
+        .interactive-stats .stat-card {
+            flex: 0 0 220px; /* fixed-ish width so cards sit side-by-side */
+            max-width: 260px;
         }
 
         .stat-card {
@@ -1069,6 +1101,17 @@
                         <span class="tech-tag">Business Intelligence</span>
                     </div>
                 </div>
+                <div class="project-card">
+                    <h3>Personal Resume Website</h3>
+                    <div class="project-date">August 2025</div>
+                    <p>Built a responsive personal resume and portfolio site from scratch using HTML, CSS, and JavaScript. Designed clean layouts with Flexbox and Grid, added smooth navigation and a contact form with client-side validation, and optimized the site for accessibility and search engines. Deployed the finished website with a custom domain.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1105,7 +1148,7 @@
                         </div>
                     </a>
                     <div class="contact-item">
-                        <div class="contact-icon">📍</div>
+                        <div class="contact-icon"><span class="emoji">📍</span></div>
                         <div>
                             <strong>Location</strong><br>
                             Tampa, FL
