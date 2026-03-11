@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jason K. Mathew - Interactive Resume</title>
+    <meta name="description"
+        content="Jason K. Mathew - Business Analytics & Information Systems Student at USF. Passionate about data analysis, web development, and turning complex data into actionable insights.">
+    <meta property="og:title" content="Jason K. Mathew - Interactive Resume">
+    <meta property="og:description"
+        content="Portfolio and Resume of Jason K. Mathew. Data Analytics, Web Development, and Business Intelligence.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jasonkmathew.com">
+    <meta property="og:image" content="https://jasonkmathew.com/pfp.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary: #7c3aed;
-            --primary-light: #ae55f7;
-            --primary-dark: #6d28d9;
-            --secondary: #9333ea;
-            --accent: #8b5cf6;
-            --background: #f8fafc;
-            --surface: #ffffff;
-            --surface-light: #f1f5f9;
-            --surface-dark: #e2e8f0;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --text-light: #94a3b8;
-            --border: #e2e8f0;
-            --glow: rgba(124, 58, 237, 0.15);
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --primary-dark: #2563eb;
+            --secondary: #38bdf8;
+            --accent: #22d3ee;
+            --background: #0a0e1a;
+            --surface: rgba(15, 23, 42, 0.8);
+            --surface-light: rgba(30, 41, 59, 0.6);
+            --surface-dark: #0f172a;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-light: #64748b;
+            --border: rgba(51, 65, 85, 0.5);
+            --glow: rgba(59, 130, 246, 0.25);
+            --shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.2);
+            --glass: rgba(15, 23, 42, 0.7);
+            --glass-border: rgba(59, 130, 246, 0.15);
         }
 
         * {
@@ -47,7 +64,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, var(--background), #f1f5f9);
+            background: var(--background);
         }
 
         .bg-animated::before {
@@ -55,16 +72,26 @@
             position: absolute;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 25% 25%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(56, 189, 248, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.04) 0%, transparent 50%);
             animation: float 30s infinite ease-in-out;
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-15px, -15px) rotate(120deg); }
-            66% { transform: translate(15px, -10px) rotate(240deg); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            33% {
+                transform: translate(-15px, -15px) rotate(120deg);
+            }
+
+            66% {
+                transform: translate(15px, -10px) rotate(240deg);
+            }
         }
 
         /* Header */
@@ -75,10 +102,11 @@
             right: 0;
             z-index: 1000;
             padding: 1rem 2rem;
-            backdrop-filter: blur(20px);
-            background: rgba(248, 250, 252, 0.95);
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(10, 14, 26, 0.85);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
         .header-content {
@@ -219,16 +247,17 @@
             border: 4px solid transparent;
             background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
             padding: 4px;
-            margin-top: 1.5rem; /* moved down a bit */
+            margin-top: 1.5rem;
+            /* moved down a bit */
             margin-bottom: 2rem;
             transition: all 0.5s ease;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
         }
 
         .profile-img:hover {
             transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
         }
 
         .typing-effect {
@@ -239,8 +268,16 @@
         }
 
         @keyframes blink {
-            0%, 50% { border-right-color: transparent; }
-            51%, 100% { border-right-color: var(--accent); }
+
+            0%,
+            50% {
+                border-right-color: transparent;
+            }
+
+            51%,
+            100% {
+                border-right-color: var(--accent);
+            }
         }
 
         /* CTA Buttons */
@@ -285,7 +322,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s ease;
         }
 
@@ -335,14 +372,16 @@
         }
 
         .skill-category {
-            background: var(--surface);
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 2rem;
             border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0;
             transform: translateY(30px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .skill-category.visible {
@@ -388,7 +427,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.5s ease;
         }
 
@@ -398,7 +437,7 @@
 
         .skill-tag:hover {
             transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
         }
 
         /* Experience Timeline */
@@ -444,13 +483,15 @@
         }
 
         .experience-card {
-            background: var(--surface);
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 2rem;
             border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .experience-card:hover {
@@ -482,31 +523,33 @@
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
-            justify-content: center; /* center incomplete last row */
+            justify-content: center;
+            /* center incomplete last row */
             align-items: stretch;
             margin: 0 auto;
         }
 
         .project-card {
-            background: var(--surface);
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 2rem;
             border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: all 0.4s ease;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
             opacity: 0;
             transform: translateY(30px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            /* allow flex children sizing when using flex layout */
-            flex: 0 1 360px; /* preferred width, will wrap if space is limited */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            flex: 0 1 360px;
             max-width: 420px;
         }
 
         /* visual style for the placeholder blank card */
         .project-card.placeholder {
-            background: repeating-linear-gradient(135deg, rgba(0,0,0,0.02) 0 6px, transparent 6px 12px);
+            background: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0 6px, transparent 6px 12px);
             border: 2px dashed var(--border);
             color: var(--text-muted);
             display: flex;
@@ -604,14 +647,15 @@
             gap: 1rem;
             margin-bottom: 2rem;
             padding: 1rem;
-            background: var(--surface);
+            background: var(--glass);
+            backdrop-filter: blur(12px);
             border-radius: 12px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             text-decoration: none;
             color: inherit;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .contact-item:hover {
@@ -631,8 +675,10 @@
             font-size: 1.5rem;
             color: white;
         }
+
         .contact-icon .emoji {
-            display: inline-block;       /* ensures filter affects the glyph */
+            display: inline-block;
+            /* ensures filter affects the glyph */
             filter: grayscale(1) brightness(0) invert(1);
             font-size: 1.35rem;
             line-height: 1;
@@ -645,24 +691,27 @@
             gap: 1.5rem;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap; /* allow wrapping on small screens */
+            flex-wrap: wrap;
+            /* allow wrapping on small screens */
             margin: 4rem 0;
         }
 
         .interactive-stats .stat-card {
-            flex: 0 0 220px; /* fixed-ish width so cards sit side-by-side */
+            flex: 0 0 220px;
+            /* fixed-ish width so cards sit side-by-side */
             max-width: 260px;
         }
 
         .stat-card {
-            background: var(--surface);
+            background: var(--glass);
+            backdrop-filter: blur(12px);
             padding: 2rem;
             border-radius: 12px;
             text-align: center;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .stat-card:hover {
@@ -692,6 +741,7 @@
                 opacity: 0;
                 transform: translateX(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -703,6 +753,7 @@
                 opacity: 0;
                 transform: translateX(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -714,6 +765,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -723,13 +775,34 @@
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             nav ul {
-                flex-wrap: wrap;
-                gap: 1rem;
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 14, 26, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 1rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+                gap: 0.5rem;
+                border-top: 1px solid var(--glass-border);
+                z-index: 100;
+            }
+
+            nav ul.mobile-open {
+                display: flex;
             }
 
             nav a {
-                padding: 0.3rem 0.8rem;
-                font-size: 0.9rem;
+                display: block;
+                padding: 1rem;
+                text-align: center;
+                border-radius: 8px;
+            }
+
+            nav a:hover {
+                background: var(--surface-light);
             }
 
             .hero-content {
@@ -784,15 +857,230 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Utility Classes */
+        .section-subtitle-primary {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle-secondary {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .section-subtitle-mb {
+            margin-bottom: 2rem;
+        }
+
+        .lead-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .lead-text-no-mb {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .list-standard {
+            margin-left: 1rem;
+            margin-top: 1rem;
+        }
+
+        .highlight-text {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .icon-filter-white {
+            filter: brightness(0) invert(1);
+        }
+
+        /* Active nav link */
+        nav a.active {
+            color: var(--primary-light);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+            pointer-events: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Footer */
+        .site-footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            background: rgba(10, 14, 26, 0.5);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-copy {
+            font-size: 0.9rem;
+        }
+
+        /* Project link buttons */
+        .project-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .project-link {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .project-link.github {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-light);
+            border: 1px solid var(--glass-border);
+        }
+
+        .project-link.github:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Page loader */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: var(--background);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--glass-border);
+            border-top-color: var(--primary-light);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Hamburger animation */
+        .mobile-menu-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        .mobile-menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -4px);
+        }
+
+        .mobile-menu-toggle span {
+            transition: all 0.3s ease;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus visible */
+        :focus-visible {
+            outline: 2px solid var(--primary-light);
+            outline-offset: 2px;
+        }
     </style>
 </head>
+
 <body>
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-spinner"></div>
+    </div>
     <div class="bg-animated"></div>
 
     <header>
         <div class="header-content">
             <div class="logo">JKM</div>
-            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" role="button" tabindex="0"
+                aria-label="Toggle menu" onkeypress="if(event.key==='Enter') toggleMobileMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -820,22 +1108,26 @@
                     <span class="typing-effect" id="typing-text"></span>
                 </div>
                 <p>
-                    Driven analytics student passionate about transforming data into actionable insights. 
+                    Driven analytics student passionate about transforming data into actionable insights.
                     I combine technical expertise with creative problem-solving to build solutions that matter.
                 </p>
                 <div class="cta-buttons">
                     <a href="#contact" class="btn btn-primary" onclick="scrollToSection('contact')">Let's Connect</a>
                     <a href="#projects" class="btn btn-secondary" onclick="scrollToSection('projects')">View My Work</a>
+                    <a href="resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener"
+                        aria-label="Download Resume PDF">⬇ Resume</a>
                 </div>
             </div>
             <div class="profile-section">
                 <img src="pfp.jpg" alt="Jason Mathew" class="profile-img" id="profileImg">
                 <div class="interactive-stats">
-                    <div class="stat-card" onclick="animateStats()">
+                    <div class="stat-card" onclick="animateStats()" role="button" tabindex="0"
+                        onkeypress="if(event.key==='Enter') animateStats()">
                         <span class="stat-number" id="projects-count">0</span>
                         <span class="stat-label">Projects Completed</span>
                     </div>
-                    <div class="stat-card" onclick="animateStats()">
+                    <div class="stat-card" onclick="animateStats()" role="button" tabindex="0"
+                        onkeypress="if(event.key==='Enter') animateStats()">
                         <span class="stat-number" id="skills-count">0</span>
                         <span class="stat-label">Technical Skills</span>
                     </div>
@@ -849,18 +1141,19 @@
             <h2 class="section-title">About Me</h2>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary);">My Journey</h3>
-                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
-                        Currently pursuing my Bachelor's in Business Analytics & Information Systems at USF, 
-                        I'm on the Dean's List and passionate about the intersection of data, technology, and business strategy.
+                    <h3 class="section-subtitle-primary">My Journey</h3>
+                    <p class="lead-text">
+                        Currently pursuing my Bachelor's in Business Analytics & Information Systems at USF,
+                        I'm on the Dean's List and passionate about the intersection of data, technology, and business
+                        strategy.
                     </p>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">
-                        From debugging computers at Best Buy to analyzing market trends at SOFWERX, 
+                    <p class="lead-text-no-mb">
+                        From debugging computers at Best Buy to analyzing market trends at SOFWERX,
                         I've discovered my superpower: turning complex data into simple, actionable insights.
                     </p>
                 </div>
                 <div class="contact-info">
-                    <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--secondary);">What Drives Me</h3>
+                    <h3 class="section-subtitle-secondary">What Drives Me</h3>
                     <div class="contact-item">
                         <div class="contact-icon"><span class="emoji">❓</span></div>
                         <div>
@@ -943,8 +1236,9 @@
                         <h3>Bachelor of Science - Business Analytics & Information Systems</h3>
                         <div class="company">University of South Florida, Tampa, FL</div>
                         <div class="date">Expected May 2026</div>
-                        <p><span style="color: var(--accent); font-weight: 600;">Dean's List</span></p>
-                        <p>Pursuing advanced coursework in data analytics, business intelligence, and information systems management.</p>
+                        <p><span class="highlight-text">Dean's List</span></p>
+                        <p>Pursuing advanced coursework in data analytics, business intelligence, and information
+                            systems management.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -952,7 +1246,8 @@
                         <h3>Associate of Arts - Business Administration and Management</h3>
                         <div class="company">Hillsborough Community College, Tampa, FL</div>
                         <div class="date">2021 - 2023</div>
-                        <p>General business administration curriculum with focus on management principles and foundational business concepts.</p>
+                        <p>General business administration curriculum with focus on management principles and
+                            foundational business concepts.</p>
                     </div>
                 </div>
             </div>
@@ -968,10 +1263,14 @@
                         <h3>Market Research Analyst Intern</h3>
                         <div class="company">SOFWERX, Tampa, FL</div>
                         <div class="date">August 2025 – Present</div>
-                        <ul style="margin-left: 1rem; margin-top: 1rem;">
-                            <li>Conducted targeted market research on emerging technologies relevant to USSOCOM, evaluating technical reports and publications to assess capabilities, limitations, and strategic fit.</li>
-                            <li>Designed and implemented data collection systems, including online forms and a centralized database, to streamline research workflows and improve data accuracy.</li>
-                            <li>Performed quantitative analysis in Excel to identify trends and prioritize high-value opportunities, supporting data-driven decision-making.</li>
+                        <ul class="list-standard">
+                            <li>Conducted targeted market research on emerging technologies relevant to USSOCOM,
+                                evaluating technical reports and publications to assess capabilities, limitations, and
+                                strategic fit.</li>
+                            <li>Designed and implemented data collection systems, including online forms and a
+                                centralized database, to streamline research workflows and improve data accuracy.</li>
+                            <li>Performed quantitative analysis in Excel to identify trends and prioritize high-value
+                                opportunities, supporting data-driven decision-making.</li>
                         </ul>
                     </div>
                 </div>
@@ -980,10 +1279,13 @@
                         <h3>Consultation Agent</h3>
                         <div class="company">Best Buy, Brandon, FL</div>
                         <div class="date">May 2022 – Present</div>
-                        <ul style="margin-left: 1rem; margin-top: 1rem;">
-                            <li>Diagnosed and resolved computer issues by analyzing system data, performance logs, and error reports to identify patterns and implement solutions.</li>
-                            <li>Conducted in-depth consultations, gathering customer needs and system specifications to recommend technical solutions based on historical service data and product trends.</li>
-                            <li>Leveraged customer data and service trends to upsell and recommend services, contributing to revenue growth and enhancing customer experience.</li>
+                        <ul class="list-standard">
+                            <li>Diagnosed and resolved computer issues by analyzing system data, performance logs, and
+                                error reports to identify patterns and implement solutions.</li>
+                            <li>Conducted in-depth consultations, gathering customer needs and system specifications to
+                                recommend technical solutions based on historical service data and product trends.</li>
+                            <li>Leveraged customer data and service trends to upsell and recommend services,
+                                contributing to revenue growth and enhancing customer experience.</li>
                         </ul>
                     </div>
                 </div>
@@ -992,11 +1294,15 @@
                         <h3>Pharmacy Technician</h3>
                         <div class="company">CVS, Dade City, FL</div>
                         <div class="date">July 2021 – April 2022</div>
-                        <ul style="margin-left: 1rem; margin-top: 1rem;">
-                            <li>Maintained and updated customer prescription records in the database, ensuring accuracy and compliance with regulatory requirements.</li>
-                            <li>Resolved insurance discrepancies by analyzing patient data, identifying errors, and ensuring proper billing and claims processing.</li>
-                            <li>Analyzed prescription and customer data to identify trends, improve operational efficiency, and enhance customer service.</li>
-                            <li>Organized and managed prescription workflows, utilizing data to track inventory levels and improve efficiency in prescription fulfillment.</li>
+                        <ul class="list-standard">
+                            <li>Maintained and updated customer prescription records in the database, ensuring accuracy
+                                and compliance with regulatory requirements.</li>
+                            <li>Resolved insurance discrepancies by analyzing patient data, identifying errors, and
+                                ensuring proper billing and claims processing.</li>
+                            <li>Analyzed prescription and customer data to identify trends, improve operational
+                                efficiency, and enhance customer service.</li>
+                            <li>Organized and managed prescription workflows, utilizing data to track inventory levels
+                                and improve efficiency in prescription fulfillment.</li>
                         </ul>
                     </div>
                 </div>
@@ -1005,11 +1311,15 @@
                         <h3>Crew Member</h3>
                         <div class="company">Dunkin', Tampa, FL</div>
                         <div class="date">March 2021 – June 2021</div>
-                        <ul style="margin-left: 1rem; margin-top: 1rem;">
-                            <li>Delivered personalized guest experiences by proactively addressing customer needs and exceeding expectations.</li>
-                            <li>Adapted to various roles by cross-training in multiple positions, ensuring seamless operations during peak hours.</li>
-                            <li>Maintained high professional standards to consistently achieve and surpass performance targets.</li>
-                            <li>Fostered a positive workplace culture by demonstrating professionalism and respect in all interactions with coworkers.</li>
+                        <ul class="list-standard">
+                            <li>Delivered personalized guest experiences by proactively addressing customer needs and
+                                exceeding expectations.</li>
+                            <li>Adapted to various roles by cross-training in multiple positions, ensuring seamless
+                                operations during peak hours.</li>
+                            <li>Maintained high professional standards to consistently achieve and surpass performance
+                                targets.</li>
+                            <li>Fostered a positive workplace culture by demonstrating professionalism and respect in
+                                all interactions with coworkers.</li>
                         </ul>
                     </div>
                 </div>
@@ -1026,9 +1336,10 @@
                         <h3>Assistant Laboratory Technician</h3>
                         <div class="company">AdventHealth</div>
                         <div class="date">November 2019 – June 2021</div>
-                        <ul style="margin-left: 1rem; margin-top: 1rem;">
+                        <ul class="list-standard">
                             <li>Recorded test data using appropriate software programs and databases.</li>
-                            <li>Coordinated with other departments within organization to support interdisciplinary research efforts.</li>
+                            <li>Coordinated with other departments within organization to support interdisciplinary
+                                research efforts.</li>
                             <li>Prepared and set up necessary lab equipment for experiments.</li>
                             <li>Organized research documentation, laboratory certificates and test results.</li>
                         </ul>
@@ -1039,11 +1350,15 @@
                         <h3>Volunteer</h3>
                         <div class="company">Baldomero Lopez State Veterans</div>
                         <div class="date">June 2017 – August 2017</div>
-                        <ul style="margin-left: 1rem; margin-top: 1rem;">
-                            <li>Assisted residents with daily activities such as bingo, group events, and meal services.</li>
-                            <li>Provided transportation support within the facility to ensure timely participation in activities.</li>
-                            <li>Engaged in meaningful conversations to promote companionship and emotional well-being.</li>
-                            <li>Supported staff in organizing and coordinating recreational and therapeutic programs.</li>
+                        <ul class="list-standard">
+                            <li>Assisted residents with daily activities such as bingo, group events, and meal services.
+                            </li>
+                            <li>Provided transportation support within the facility to ensure timely participation in
+                                activities.</li>
+                            <li>Engaged in meaningful conversations to promote companionship and emotional well-being.
+                            </li>
+                            <li>Supported staff in organizing and coordinating recreational and therapeutic programs.
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -1058,7 +1373,9 @@
                 <div class="project-card">
                     <h3>AI-Powered PC Builder Platform</h3>
                     <div class="project-date">May 2025 – Present</div>
-                    <p>Planned a comprehensive 20-week web platform using modern tech stack for AI-driven PC build recommendations. Built complete architecture and monetization strategy with cloud services integration.</p>
+                    <p>Planned a comprehensive 20-week web platform using modern tech stack for AI-driven PC build
+                        recommendations. Built complete architecture and monetization strategy with cloud services
+                        integration.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Angular</span>
                         <span class="tech-tag">Django REST</span>
@@ -1067,22 +1384,34 @@
                         <span class="tech-tag">Docker</span>
                         <span class="tech-tag">AWS</span>
                     </div>
+                    <div class="project-links">
+                        <a href="https://github.com/jasonkmathew" target="_blank" class="project-link github">↗
+                            GitHub</a>
+                    </div>
                 </div>
                 <div class="project-card">
                     <h3>Tour Comparison React App</h3>
                     <div class="project-date">May 2025</div>
-                    <p>Built an interactive React application that fetches live data from APIs to display and compare tour packages. Implemented dynamic components and state management for enhanced user experience.</p>
+                    <p>Built an interactive React application that fetches live data from APIs to display and compare
+                        tour packages. Implemented dynamic components and state management for enhanced user experience.
+                    </p>
                     <div class="project-tech">
                         <span class="tech-tag">React</span>
                         <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">API Integration</span>
                         <span class="tech-tag">State Management</span>
                     </div>
+                    <div class="project-links">
+                        <a href="https://github.com/jasonkmathew" target="_blank" class="project-link github">↗
+                            GitHub</a>
+                    </div>
                 </div>
                 <div class="project-card">
                     <h3>COVID-19 Data Analysis</h3>
                     <div class="project-date">December 2024</div>
-                    <p>Conducted comprehensive analysis of COVID-19 mortality data using Python. Leveraged Pandas and Matplotlib for data cleaning, statistical examination, and visualizations to uncover key trends and patterns.</p>
+                    <p>Conducted comprehensive analysis of COVID-19 mortality data using Python. Leveraged Pandas and
+                        Matplotlib for data cleaning, statistical examination, and visualizations to uncover key trends
+                        and patterns.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">Pandas</span>
@@ -1093,7 +1422,9 @@
                 <div class="project-card">
                     <h3>Superstore Tableau Dashboard</h3>
                     <div class="project-date">December 2024</div>
-                    <p>Performed comprehensive data analysis using Tableau, creating multiple visualizations including bar charts, trend lines, and filled maps. Developed an interactive dashboard with dynamic filters and calculated fields.</p>
+                    <p>Performed comprehensive data analysis using Tableau, creating multiple visualizations including
+                        bar charts, trend lines, and filled maps. Developed an interactive dashboard with dynamic
+                        filters and calculated fields.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Tableau</span>
                         <span class="tech-tag">Data Visualization</span>
@@ -1104,26 +1435,34 @@
                 <div class="project-card">
                     <h3>Personal Resume Website</h3>
                     <div class="project-date">August 2025</div>
-                    <p>Built a responsive personal resume and portfolio site from scratch using HTML, CSS, and JavaScript. Designed clean layouts with Flexbox and Grid, added smooth navigation and a contact form with client-side validation, and optimized the site for accessibility and search engines. Deployed the finished website with a custom domain.</p>
+                    <p>Built a responsive personal resume and portfolio site from scratch using HTML, CSS, and
+                        JavaScript. Designed clean layouts with Flexbox and Grid, added smooth navigation and a contact
+                        form with client-side validation, and optimized the site for accessibility and search engines.
+                        Deployed the finished website with a custom domain.</p>
                     <div class="project-tech">
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
                         <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">Responsive Design</span>
                     </div>
+                    <div class="project-links">
+                        <a href="https://jasonkmathew.com" target="_blank" class="project-link github">↗ Live Site</a>
+                    </div>
                 </div>
                 <div class="project-card">
                     <h3>75 Cars Data Analysis Excel Project</h3>
                     <div class="project-date">December 2024</div>
-                    <p>Performed statistical analysis on used vehicle pricing using Excel, including descriptive statistics, histograms, and a two-sample t-test to compare models. Leveraged the Data Analysis ToolPak to generate summary statistics, identify outliers, and test for pricing trends.</p>
+                    <p>Performed statistical analysis on used vehicle pricing using Excel, including descriptive
+                        statistics, histograms, and a two-sample t-test to compare models. Leveraged the Data Analysis
+                        ToolPak to generate summary statistics, identify outliers, and test for pricing trends.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Microsoft Excel</span>
                         <span class="tech-tag">Data Analysis</span>
                         <span class="tech-tag">Statistics</span>
                         <span class="tech-tag">Data Visualization</span>
                     </div>
+                </div>
             </div>
-        </div>
     </section>
 
     <section id="contact">
@@ -1131,9 +1470,10 @@
             <h2 class="section-title">Let's Connect</h2>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h3 style="font-size: 2rem; margin-bottom: 2rem; color: var(--primary);">Get In Touch</h3>
-                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
-                        I'm always excited to discuss new opportunities, collaborate on projects, or just chat about data and technology. 
+                    <h3 class="section-subtitle-primary section-subtitle-mb">Get In Touch</h3>
+                    <p class="lead-text">
+                        I'm always excited to discuss new opportunities, collaborate on projects, or just chat about
+                        data and technology.
                         Feel free to reach out through any of the channels below!
                     </p>
                     <a href="mailto:jasonkmathewpersonal@gmail.com" class="contact-item">
@@ -1151,7 +1491,8 @@
                         </div>
                     </a>
                     <a href="https://github.com/jasonkmathew" target="_blank" class="contact-item">
-                        <div class="contact-icon"><img src="github.png" alt="GitHub" width="24" height="24" style="filter: brightness(0) invert(1);"></div>
+                        <div class="contact-icon"><img src="github.png" alt="GitHub" width="24" height="24"
+                                class="icon-filter-white"></div>
                         <div>
                             <strong>GitHub</strong><br>
                             jasonkmathew
@@ -1166,7 +1507,7 @@
                     </div>
                 </div>
                 <div class="contact-info">
-                    <h3 style="font-size: 2rem; margin-bottom: 2rem; color: var(--secondary);">Quick Stats</h3>
+                    <h3 class="section-subtitle-secondary section-subtitle-mb">Quick Stats</h3>
                     <div class="interactive-stats">
                         <div class="stat-card">
                             <span class="stat-number">700+</span>
@@ -1178,10 +1519,22 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
+
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/jasonkmathew/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+            <a href="https://github.com/jasonkmathew" target="_blank" aria-label="GitHub">GitHub</a>
+            <a href="mailto:jasonkmathewpersonal@gmail.com" aria-label="Email">Email</a>
+        </div>
+        <p class="footer-copy">&copy; <span id="footerYear"></span> Jason K. Mathew • Built with ❤️</p>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
     <script>
         // Typing effect
@@ -1193,14 +1546,14 @@
             'Tech Innovator',
             'Future Data Scientist'
         ];
-        
+
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        
+
         function typeWriter() {
             const currentPhrase = phrases[phraseIndex];
-            
+
             if (isDeleting) {
                 typingText.textContent = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
@@ -1208,13 +1561,13 @@
                 typingText.textContent = currentPhrase.substring(0, charIndex + 1);
                 charIndex++;
             }
-            
+
             let typeSpeed = 100;
-            
+
             if (isDeleting) {
                 typeSpeed /= 2;
             }
-            
+
             if (!isDeleting && charIndex === currentPhrase.length) {
                 typeSpeed = 2000;
                 isDeleting = true;
@@ -1226,27 +1579,27 @@
                 }
                 typeSpeed = 500;
             }
-            
+
             setTimeout(typeWriter, typeSpeed);
         }
-        
+
         // Start typing effect after page loads
         setTimeout(typeWriter, 1000);
-        
+
         // Animate stats
         function animateStats() {
             const projectsCount = document.getElementById('projects-count');
             const skillsCount = document.getElementById('skills-count');
-            
+
             animateCounter(projectsCount, 6, 2000);
             animateCounter(skillsCount, 20, 2500);
         }
-        
+
         function animateCounter(element, target, duration) {
             const start = 0;
             const increment = target / (duration / 50);
             let current = start;
-            
+
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
@@ -1257,10 +1610,10 @@
                 }
             }, 50);
         }
-        
+
         // Initialize stats animation when page loads
         setTimeout(animateStats, 2000);
-        
+
         // Scroll animations
         function isElementInViewport(el) {
             const rect = el.getBoundingClientRect();
@@ -1271,12 +1624,12 @@
                 rect.right <= (window.innerWidth || document.documentElement.clientWidth)
             );
         }
-        
+
         function isElementPartiallyInViewport(el) {
             const rect = el.getBoundingClientRect();
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
             const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-            
+
             return (
                 rect.bottom >= 0 &&
                 rect.right >= 0 &&
@@ -1284,42 +1637,43 @@
                 rect.left <= windowWidth
             );
         }
-        
+
         function handleScrollAnimations() {
             const elements = document.querySelectorAll('.section-title, .skill-category, .timeline-item, .project-card, .contact-info');
-            
+
             elements.forEach(element => {
                 if (isElementPartiallyInViewport(element)) {
                     element.classList.add('visible');
                 }
             });
         }
-        
+
         // Smooth scrolling
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
             const headerHeight = document.querySelector('header').offsetHeight;
-            const offsetPosition = element.offsetTop - headerHeight;
-            
+            const offsetPosition = element.offsetTop - headerHeight - 40;
+
             window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
             });
-            
+
             // Close mobile menu if open
             const navMenu = document.getElementById('navMenu');
             navMenu.classList.remove('mobile-open');
         }
-        
-        // Mobile menu toggle
+
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
             navMenu.classList.toggle('mobile-open');
+            toggle.classList.toggle('open');
         }
-        
+
         // Profile image Easter egg
         let clickCount = 0;
-        document.getElementById('profileImg').addEventListener('click', function() {
+        document.getElementById('profileImg').addEventListener('click', function () {
             clickCount++;
             if (clickCount >= 5) {
                 this.style.transform = 'scale(1.1) rotate(360deg)';
@@ -1331,34 +1685,68 @@
                 }, 2000);
             }
         });
-        
+
         // Event listeners
         window.addEventListener('scroll', handleScrollAnimations);
         window.addEventListener('resize', handleScrollAnimations);
-        
+
+        // Back to top button
+        window.addEventListener('scroll', function () {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 600) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+
+        // Active nav highlighting via IntersectionObserver
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a');
+        const navObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    const activeLink = document.querySelector('nav a[href="#' + entry.target.id + '"]');
+                    if (activeLink) activeLink.classList.add('active');
+                }
+            });
+        }, { threshold: 0.3, rootMargin: '-80px 0px 0px 0px' });
+        sections.forEach(sec => navObserver.observe(sec));
+
         // Initialize on load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             handleScrollAnimations();
-            
+
+            // Dismiss page loader
+            const loader = document.getElementById('pageLoader');
+            if (loader) loader.classList.add('hidden');
+
+            // Footer year
+            const yearEl = document.getElementById('footerYear');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+
             // Add click handlers to navigation links
             document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const sectionId = this.getAttribute('href').substring(1);
                     scrollToSection(sectionId);
                 });
             });
-            
+
             // Close mobile menu when clicking outside
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 const navMenu = document.getElementById('navMenu');
                 const menuToggle = document.querySelector('.mobile-menu-toggle');
-                
+
                 if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
                     navMenu.classList.remove('mobile-open');
+                    menuToggle.classList.remove('open');
                 }
             });
         });
     </script>
 </body>
+
 </html>
